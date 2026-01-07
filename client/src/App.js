@@ -30,6 +30,19 @@ function App() {
   const [error, setError] = useState("");
   const [showAbout, setShowAbout] = useState(false);
 
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("theme-dark");
+    } else {
+      document.body.classList.remove("theme-dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   useEffect(() => {
     if (user) {
       setView("app");
@@ -159,6 +172,10 @@ function App() {
     setView("login");
   }
 
+  function toggleTheme() {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }
+
   useEffect(() => {
     if (!user) return;
 
@@ -192,7 +209,7 @@ function App() {
       <div className="app-card">
         <header className="app-header">
           <h1>Med Cycle Tracker</h1>
-          <p className="subtitle">Твій помічник у курсах ліків</p>
+          <p className="subtitle">Bubu pharmacist</p>
         </header>
 
         {error && <div className="alert alert-error">{error}</div>}
@@ -224,6 +241,12 @@ function App() {
             <div className="top-bar">
               <span className="user-email">{user.email}</span>
               <div className="top-bar-buttons">
+                <button
+                  className="btn-outline btn-small"
+                  onClick={toggleTheme}
+                >
+                  {theme === "light" ? "Темна тема" : "Світла тема"}
+                </button>
                 <button
                   className="btn-outline btn-small"
                   onClick={() => setShowAbout((v) => !v)}

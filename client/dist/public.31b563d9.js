@@ -27337,6 +27337,16 @@ function App() {
     const [loading, setLoading] = (0, _react.useState)(false);
     const [error, setError] = (0, _react.useState)("");
     const [showAbout, setShowAbout] = (0, _react.useState)(false);
+    const [theme, setTheme] = (0, _react.useState)(()=>{
+        return localStorage.getItem("theme") || "light";
+    });
+    (0, _react.useEffect)(()=>{
+        if (theme === "dark") document.body.classList.add("theme-dark");
+        else document.body.classList.remove("theme-dark");
+        localStorage.setItem("theme", theme);
+    }, [
+        theme
+    ]);
     (0, _react.useEffect)(()=>{
         if (user) {
             setView("app");
@@ -27457,7 +27467,9 @@ function App() {
         setCourses([]);
         setView("login");
     }
-    // Нагадування
+    function toggleTheme() {
+        setTheme((prev)=>prev === "light" ? "dark" : "light");
+    }
     (0, _react.useEffect)(()=>{
         if (!user) return;
         const interval = setInterval(()=>{
@@ -27494,21 +27506,21 @@ function App() {
                             children: "Med Cycle Tracker"
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 195,
+                            lineNumber: 211,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                             className: "subtitle",
-                            children: "\u0422\u0432\u0456\u0439 \u043F\u043E\u043C\u0456\u0447\u043D\u0438\u043A \u0443 \u043A\u0443\u0440\u0441\u0430\u0445 \u043B\u0456\u043A\u0456\u0432"
+                            children: "Bubu pharmacist"
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 196,
+                            lineNumber: 212,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/App.js",
-                    lineNumber: 194,
+                    lineNumber: 210,
                     columnNumber: 9
                 }, this),
                 error && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27516,7 +27528,7 @@ function App() {
                     children: error
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 199,
+                    lineNumber: 215,
                     columnNumber: 19
                 }, this),
                 !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27530,7 +27542,7 @@ function App() {
                                     children: "\u0412\u0445\u0456\u0434"
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 204,
+                                    lineNumber: 220,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27539,27 +27551,27 @@ function App() {
                                     children: "\u0420\u0435\u0454\u0441\u0442\u0440\u0430\u0446\u0456\u044F"
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 210,
+                                    lineNumber: 226,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/App.js",
-                            lineNumber: 203,
+                            lineNumber: 219,
                             columnNumber: 13
                         }, this),
                         view === "login" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginFormDefault.default), {
                             onSubmit: handleLogin
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 218,
+                            lineNumber: 234,
                             columnNumber: 34
                         }, this),
                         view === "register" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registerFormDefault.default), {
                             onSubmit: handleRegister
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 219,
+                            lineNumber: 235,
                             columnNumber: 37
                         }, this)
                     ]
@@ -27574,7 +27586,7 @@ function App() {
                                     children: user.email
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 226,
+                                    lineNumber: 242,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27582,11 +27594,20 @@ function App() {
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                             className: "btn-outline btn-small",
+                                            onClick: toggleTheme,
+                                            children: theme === "light" ? "\u0422\u0435\u043C\u043D\u0430 \u0442\u0435\u043C\u0430" : "\u0421\u0432\u0456\u0442\u043B\u0430 \u0442\u0435\u043C\u0430"
+                                        }, void 0, false, {
+                                            fileName: "src/App.js",
+                                            lineNumber: 244,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                            className: "btn-outline btn-small",
                                             onClick: ()=>setShowAbout((v)=>!v),
                                             children: showAbout ? "\u0421\u0445\u043E\u0432\u0430\u0442\u0438 \u043E\u043F\u0438\u0441" : "\u041F\u0440\u043E \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u043D\u043E\u043A"
                                         }, void 0, false, {
                                             fileName: "src/App.js",
-                                            lineNumber: 228,
+                                            lineNumber: 250,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27595,57 +27616,57 @@ function App() {
                                             children: "\u0412\u0438\u0439\u0442\u0438"
                                         }, void 0, false, {
                                             fileName: "src/App.js",
-                                            lineNumber: 234,
+                                            lineNumber: 256,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/App.js",
-                                    lineNumber: 227,
+                                    lineNumber: 243,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/App.js",
-                            lineNumber: 225,
+                            lineNumber: 241,
                             columnNumber: 13
                         }, this),
                         showAbout && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutAppDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 240,
+                            lineNumber: 262,
                             columnNumber: 27
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reminderSettingsDefault.default), {}, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 242,
+                            lineNumber: 264,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _todayPanelDefault.default), {
                             courses: courses
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 243,
+                            lineNumber: 265,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _statsPanelDefault.default), {
                             courses: courses
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 244,
+                            lineNumber: 266,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _courseFormDefault.default), {
                             onSubmit: handleCreateCourse
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 246,
+                            lineNumber: 268,
                             columnNumber: 13
                         }, this),
                         loading ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                             children: "\u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F \u043A\u0443\u0440\u0441\u0456\u0432..."
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 249,
+                            lineNumber: 271,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _courseListDefault.default), {
                             courses: courses,
@@ -27656,7 +27677,7 @@ function App() {
                             onUpdate: handleUpdateCourse
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 251,
+                            lineNumber: 273,
                             columnNumber: 15
                         }, this)
                     ]
@@ -27667,27 +27688,27 @@ function App() {
                         children: "\u2695\uFE0F \u041D\u0430\u0433\u0430\u0434\u0443\u0432\u0430\u043D\u043D\u044F, \u0430 \u043D\u0435 \u043B\u0456\u043A\u0430\u0440. \u0417\u0430\u0432\u0436\u0434\u0438 \u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0443\u0439\u0441\u044F \u0437 \u0444\u0430\u0445\u0456\u0432\u0446\u0435\u043C."
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 264,
+                        lineNumber: 286,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 263,
+                    lineNumber: 285,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/App.js",
-            lineNumber: 193,
+            lineNumber: 209,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 192,
+        lineNumber: 208,
         columnNumber: 5
     }, this);
 }
-_s(App, "1cCXfp+sTkFhzRB4g5wPQFhkK4Q=");
+_s(App, "9K/inGJEvg5MpjDyNU85aHbDO0I=");
 _c = App;
 exports.default = App;
 var _c;
