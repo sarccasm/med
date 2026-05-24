@@ -1,4 +1,4 @@
-name: Deploy Vite site to Pages
+name: Deploy Parcel site to Pages
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       - run: npm install
         working-directory: ./client
 
-      - run: npm run build
+      - run: npm run build -- --public-url /med/
         working-directory: ./client
 
       - uses: actions/upload-pages-artifact@v3
@@ -41,7 +41,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     needs: build
-
     runs-on: ubuntu-latest
 
     steps:
