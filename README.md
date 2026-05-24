@@ -36,7 +36,7 @@ cp .env.example .env   # при потребі змінити MONGO_URI і JWT_S
 npm install
 npm run dev
 
-Сервер за замовчуванням стартує на http://localhost:4000.
+Сервер за замовчуванням стартує на "https://med-di21.onrender.com/api".
 
 Клієнт
 cd client

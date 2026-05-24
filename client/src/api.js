@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL || "http://localhost:4000/api";
+const API_URL = process.env.API_URL || ""https://med-di21.onrender.com/api"";
 
 async function request(path, options = {}) {
   const token = localStorage.getItem("token");
